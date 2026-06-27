@@ -53,4 +53,2199 @@
             max-width: 380px;
             width: 100%;
             border: 1px solid rgba(255, 215, 0, 0.15);
-            box-shadow:
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .login-box .logo {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        .login-box h1 {
+            color: #ffd700;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .login-box .subtitle {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .login-box .clinic-name {
+            color: rgba(255, 215, 0, 0.5);
+            font-size: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255, 215, 0, 0.05);
+            padding-top: 12px;
+        }
+
+        .login-box .input-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .login-box .input-group label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .login-box .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-box .input-group input:focus {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.03);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        .login-box .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffd700, #f7971e);
+            color: #0a0a1a;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:active {
+            transform: scale(0.96);
+        }
+
+        .login-error {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .login-error.active {
+            display: block;
+        }
+
+        /* ===== MAIN APP ===== */
+        #mainApp {
+            display: none;
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        #mainApp.active {
+            display: block;
+        }
+
+        .app-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 18px 14px 24px;
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .body-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800"><path d="M200 50 C120 50 80 100 80 180 C80 250 100 280 120 320 C130 340 140 370 140 400 C140 430 130 460 120 490 C110 520 100 560 100 600 C100 650 120 690 150 720 C170 740 180 750 200 760 C220 750 230 740 250 720 C280 690 300 650 300 600 C300 560 290 520 280 490 C270 460 260 430 260 400 C260 370 270 340 280 320 C300 280 320 250 320 180 C320 100 280 50 200 50Z" fill="rgba(255,215,0,0.3)" stroke="rgba(255,215,0,0.1)" stroke-width="1"/><circle cx="200" cy="120" r="40" fill="rgba(255,215,0,0.2)" stroke="rgba(255,215,0,0.1)" stroke-width="1"/><circle cx="200" cy="100" r="15" fill="rgba(255,215,0,0.15)"/><circle cx="185" cy="95" r="4" fill="rgba(255,215,0,0.2)"/><circle cx="215" cy="95" r="4" fill="rgba(255,215,0,0.2)"/><path d="M200 140 L200 160" stroke="rgba(255,215,0,0.1)" stroke-width="2"/><path d="M170 300 L230 300" stroke="rgba(255,215,0,0.1)" stroke-width="2"/><path d="M150 400 L250 400" stroke="rgba(255,215,0,0.1)" stroke-width="2"/><path d="M140 500 L260 500" stroke="rgba(255,215,0,0.1)" stroke-width="2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            text-align: center;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-header .logo-icon {
+            font-size: 32px;
+            display: block;
+        }
+
+        .app-header h1 {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 2px;
+        }
+
+        .app-header .sub {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .app-header .clinic-tag {
+            color: rgba(255, 215, 0, 0.25);
+            font-size: 8px;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== INTRO TEXT - ENGLISH ONLY ===== */
+        .intro-text {
+            background: rgba(255, 215, 0, 0.03);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border-left: 2px solid rgba(255, 215, 0, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-text p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 10px;
+            line-height: 1.7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .intro-text p strong {
+            color: #ffd700;
+        }
+
+        /* ===== TENS/EMS PRODUCT DISPLAY ===== */
+        .product-display {
+            background: rgba(255, 215, 0, 0.04);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .product-display .product-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .product-display .product-name {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .product-display .product-desc {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 8px;
+            margin-top: 2px;
+        }
+
+        .product-display .connect-status {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        .product-display .connect-status.connected {
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            border-color: rgba(46, 204, 113, 0.2);
+        }
+
+        .product-display .connect-status.error {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border-color: rgba(255, 107, 107, 0.2);
+        }
+
+        /* ===== SECRET BUTTON (HIDDEN) ===== */
+        .secret-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 215, 0, 0.05);
+            color: rgba(255, 215, 0, 0.05);
+            font-size: 8px;
+            cursor: pointer;
+            z-index: 9995;
+            transition: all 0.3s ease;
+        }
+
+        .secret-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            color: rgba(255, 215, 0, 0.3);
+        }
+
+        /* ===== FORM ===== */
+        .form-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 14px 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-card h2 {
+            color: #ffd700;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .form-row.three {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
+        }
+
+        .form-row.single {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 9px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.03);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.03);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.12);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 45px;
+            max-height: 100px;
+        }
+
+        .form-group select option {
+            background: #0a0a1a;
+            color: #ffffff;
+        }
+
+        /* ===== CONNECT BUTTON ===== */
+        .btn-connect {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffd700, #f7971e);
+            color: #0a0a1a;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-connect:active {
+            transform: scale(0.96);
+        }
+
+        .btn-connect:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-connect .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(10, 10, 26, 0.15);
+            border-top-color: #0a0a1a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-connect.loading .spinner {
+            display: inline-block;
+        }
+
+        .btn-connect.loading .btn-text {
+            display: none;
+        }
+
+        .action-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 6px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .action-btn {
+            padding: 8px 4px;
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        .action-btn.summary {
+            border-color: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+        }
+
+        .action-btn.print {
+            border-color: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .action-btn.reset {
+            border-color: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .action-btn.pdf {
+            border-color: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+        }
+
+        .action-btn.new-patient {
+            border-color: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        /* ===== ERROR ===== */
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 12px;
+            text-align: center;
+            padding: 8px;
+            background: rgba(255, 107, 107, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 107, 0.08);
+            display: none;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-msg.active {
+            display: block;
+        }
+
+        /* ===== PROCESSING OVERLAY ===== */
+        .processing-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9998;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .processing-overlay.active {
+            display: flex;
+        }
+
+        .processing-overlay .pulse-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 215, 0, 0.1);
+            border-top-color: #ffd700;
+            border-bottom-color: #ffd700;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            position: relative;
+        }
+
+        .processing-overlay .pulse-circle::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 215, 0, 0.05);
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        .processing-overlay .bip-text {
+            color: rgba(255, 215, 0, 0.5);
+            font-size: 14px;
+            margin-top: 20px;
+            letter-spacing: 3px;
+            font-family: monospace;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        .processing-overlay .progress-text {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        .processing-overlay .error-text {
+            color: #ff6b6b;
+            font-size: 13px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .processing-overlay .error-text.active {
+            display: block;
+        }
+
+        /* ===== REMOVE PADS MODAL ===== */
+        .remove-pads-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9997;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .remove-pads-modal.active {
+            display: flex;
+        }
+
+        .remove-pads-box {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 35px 28px 30px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            animation: modalPop 0.4s ease;
+        }
+
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .remove-pads-box .icon {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .remove-pads-box h2 {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .remove-pads-box p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            margin: 8px 0 18px;
+            line-height: 1.6;
+        }
+
+        .remove-pads-box .btn-ok {
+            padding: 12px 40px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffd700, #f7971e);
+            color: #0a0a1a;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-pads-box .btn-ok:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== RESULT AREA ===== */
+        .result-area {
+            display: none;
+            margin-top: 12px;
+            animation: fadeIn 0.6s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-area.active {
+            display: block;
+        }
+
+        .medical-doc {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 18px;
+            padding: 16px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .doc-header {
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.08);
+            margin-bottom: 12px;
+        }
+
+        .doc-header h2 {
+            color: #ffd700;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .doc-header .doc-sub {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .doc-header .doc-id {
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 8px;
+            font-family: monospace;
+        }
+
+        .patient-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px 12px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .patient-summary .item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .patient-summary .item .label {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .patient-summary .item .value {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .patient-summary .item .value.small {
+            font-size: 10px;
+        }
+
+        .vitals-display {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 4px;
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .vitals-display .vit-item {
+            text-align: center;
+        }
+
+        .vitals-display .vit-item .vlabel {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vitals-display .vit-item .vvalue {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .health-meter {
+            margin: 8px 0 12px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .health-meter .label {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+
+        .health-meter .bar-bg {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .health-meter .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ffd700, #f7971e);
+            width: 0%;
+            transition: width 1.2s ease;
+        }
+
+        .analysis-section {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            border-left: 2px solid #ffd700;
+        }
+
+        .analysis-section h3 {
+            color: #ffd700;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .analysis-section .content {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .analysis-section .content p {
+            margin-bottom: 3px;
+        }
+
+        .ai-full-text {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .ai-full-text h3 {
+            color: #ffd700;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-full-text .content {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 12px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .ai-full-text .content p {
+            margin-bottom: 4px;
+        }
+
+        .doc-footer {
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SUMMARY OVERLAY ===== */
+        .summary-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9996;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .summary-overlay.active {
+            display: flex;
+        }
+
+        .summary-overlay .spinner-big {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 215, 0, 0.1);
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .summary-overlay p {
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .summary-overlay .progress-text {
+            color: rgba(255, 215, 0, 0.3);
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: #ffffff !important;
+                padding: 0 !important;
+            }
+            #loginScreen {
+                display: none !important;
+            }
+            #mainApp {
+                display: block !important;
+            }
+            .app-container {
+                background: #ffffff !important;
+                backdrop-filter: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 20px !important;
+                border-radius: 0 !important;
+                min-height: auto !important;
+            }
+            .body-bg {
+                display: none !important;
+            }
+            .form-card,
+            .btn-connect,
+            .action-bar,
+            .error-msg,
+            .intro-text,
+            .app-header .sub,
+            .app-header .clinic-tag,
+            .product-display {
+                display: none !important;
+            }
+            .result-area {
+                display: block !important;
+            }
+            .medical-doc {
+                background: #ffffff !important;
+                border: 1px solid #dddddd !important;
+                border-radius: 0 !important;
+                padding: 10px !important;
+            }
+            .doc-header h2 {
+                color: #1a1a2e !important;
+            }
+            .doc-header .doc-sub {
+                color: #999999 !important;
+            }
+            .patient-summary .item .value {
+                color: #1a1a2e !important;
+            }
+            .patient-summary .item .label {
+                color: #666666 !important;
+            }
+            .vitals-display .vit-item .vvalue {
+                color: #1a1a2e !important;
+            }
+            .vitals-display .vit-item .vlabel {
+                color: #666666 !important;
+            }
+            .analysis-section .content {
+                color: #1a1a2e !important;
+            }
+            .ai-full-text .content {
+                color: #1a1a2e !important;
+            }
+            .health-meter .label {
+                color: #333333 !important;
+            }
+            .doc-footer {
+                color: #999999 !important;
+            }
+            .analysis-section {
+                border-left-color: #f7971e !important;
+            }
+            .health-meter .bar-fill {
+                background: #f7971e !important;
+            }
+            .action-btn {
+                display: none !important;
+            }
+            .result-area {
+                margin-top: 0 !important;
+            }
+            .summary-overlay {
+                display: none !important;
+            }
+            .processing-overlay {
+                display: none !important;
+            }
+            .remove-pads-modal {
+                display: none !important;
+            }
+            .secret-btn {
+                display: none !important;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 400px) {
+            .app-container {
+                padding: 12px 8px 16px;
+            }
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+            .form-row.three {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 4px;
+            }
+            .vitals-display {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 3px;
+            }
+            .action-bar {
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                gap: 3px;
+            }
+            .patient-summary {
+                grid-template-columns: 1fr 1fr;
+                gap: 2px 8px;
+                padding: 5px 8px;
+            }
+            .app-header h1 {
+                font-size: 15px;
+            }
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+            .form-group label {
+                font-size: 8px;
+            }
+            .analysis-section .content {
+                font-size: 11px;
+            }
+            .ai-full-text .content {
+                font-size: 11px;
+            }
+            .action-btn {
+                font-size: 7px;
+                padding: 5px 2px;
+            }
+            .doc-header h2 {
+                font-size: 13px;
+            }
+            .patient-summary .item .value {
+                font-size: 10px;
+            }
+            .vitals-display .vit-item .vvalue {
+                font-size: 11px;
+            }
+            .health-meter .label {
+                font-size: 9px;
+            }
+            .login-box {
+                padding: 30px 20px 25px;
+            }
+            .login-box h1 {
+                font-size: 18px;
+            }
+            .intro-text p {
+                font-size: 9px;
+            }
+            .remove-pads-box {
+                padding: 25px 18px 22px;
+            }
+            .remove-pads-box h2 {
+                font-size: 16px;
+            }
+            .remove-pads-box p {
+                font-size: 11px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .app-container {
+                padding: 24px 22px 28px;
+            }
+            .app-header h1 {
+                font-size: 22px;
+            }
+            .form-row {
+                gap: 12px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 10px;
+        }
+
+        input,
+        button,
+        select,
+        textarea {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <div class="logo">🌿</div>
+            <h1>UVEDAUS</h1>
+            <div class="subtitle">PRO HUMAN ANALYSIS</div>
+            <div class="clinic-name">Made from India · Developed by DR WILLIAM HERBAL CLINIC TANZANIA</div>
+
+            <div class="input-group">
+                <label>Admin Username</label>
+                <input type="text" id="loginUser" placeholder="Enter username" value="admin">
+            </div>
+            <div class="input-group">
+                <label>Admin Password</label>
+                <input type="password" id="loginPass" placeholder="Enter password" value="123">
+            </div>
+
+            <button class="login-btn" id="loginBtn">🔓 ACCESS SYSTEM</button>
+            <div class="login-error" id="loginError">❌ Invalid credentials. Please try again.</div>
+        </div>
+    </div>
+
+    <!-- ===== SECRET BUTTON (HIDDEN) ===== -->
+    <button class="secret-btn" id="secretBtn">🔑</button>
+
+    <!-- ===== MAIN APP ===== -->
+    <div id="mainApp">
+        <div class="app-container">
+
+            <!-- 3D Human Body Background -->
+            <div class="body-bg"></div>
+
+            <!-- HEADER -->
+            <div class="app-header">
+                <span class="logo-icon">🌿</span>
+                <h1>UVEDAUS</h1>
+                <div class="sub">PRO HUMAN ANALYSIS</div>
+                <div class="clinic-tag">Made from India · Developed by DR WILLIAM HERBAL CLINIC TANZANIA</div>
+            </div>
+
+            <!-- INTRO TEXT - ENGLISH ONLY -->
+            <div class="intro-text">
+                <p>
+                    <strong>⚕️ Uvedaus - Pro Human Analysis</strong><br>
+                    This system utilizes patient name and biometric data to generate comprehensive health analytics
+                    through <strong>AYURVEDIC</strong> methodology. It integrates <strong>Zodiac, Numerology, Solar,
+                    and Numerical</strong> analysis to identify <strong>primary systemic vulnerabilities</strong>.
+                    The diagnostic framework incorporates <strong>Traditional Chinese Medicine (TCM),
+                    Unani (Arabic) Medicine, and Evidence-Based Scientific Protocols</strong>
+                    for maximum diagnostic precision.
+                </p>
+            </div>
+
+            <!-- TENS/EMS PRODUCT DISPLAY -->
+            <div class="product-display">
+                <span class="product-icon">⚡</span>
+                <div class="product-name">Pad For Physiotherapy Machine Accessories Pack Of 2</div>
+                <div class="product-desc">EMS Electrode Pads for Tens Electro Stimulation Slimming Therapy Machine · Electric Muscle Stimulator Body Massager</div>
+                <span class="connect-status" id="connectStatus">🔴 NOT CONNECTED</span>
+            </div>
+
+            <!-- PATIENT FORM -->
+            <div class="form-card">
+                <h2>📋 PATIENT REGISTRATION</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="patientName" placeholder="Baraka Richard Nonya">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="patientGender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row three">
+                    <div class="form-group">
+                        <label>Year of Birth</label>
+                        <input type="number" id="patientYear" placeholder="1995" min="1900" max="2025">
+                    </div>
+                    <div class="form-group">
+                        <label>Month</label>
+                        <input type="number" id="patientMonth" placeholder="6" min="1" max="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Day</label>
+                        <input type="number" id="patientDay" placeholder="15" min="1" max="31">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Time of Birth (Optional)</label>
+                        <input type="text" id="patientTime" placeholder="14:30">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="patientPhone" placeholder="0762 286 282">
+                    </div>
+                </div>
+
+                <div class="form-row single">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" id="patientAddress" placeholder="Dar es Salaam, Ilala">
+                    </div>
+                </div>
+
+                <div class="form-row three">
+                    <div class="form-group">
+                        <label>Weight (kg)</label>
+                        <input type="number" id="patientWeight" placeholder="70" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Blood Pressure</label>
+                        <input type="text" id="patientPressure" placeholder="120/80">
+                    </div>
+                    <div class="form-group">
+                        <label>Blood Glucose</label>
+                        <input type="text" id="patientSugar" placeholder="90 mg/dL">
+                    </div>
+                </div>
+
+                <div class="form-row single">
+                    <div class="form-group">
+                        <label>📝 Presenting Complaints / Symptoms</label>
+                        <textarea id="patientSymptoms" placeholder="Describe all symptoms in detail..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row single">
+                    <div class="form-group">
+                        <label>Additional Medical History</label>
+                        <input type="text" id="patientNotes" placeholder="Chronic conditions, medications, surgical history...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONNECT BUTTON -->
+            <button class="btn-connect" id="connectBtn">
+                <span class="spinner"></span>
+                <span class="btn-text">⚡ CONNECT</span>
+            </button>
+
+            <!-- ERROR -->
+            <div class="error-msg" id="errorMsg">⚠️ Please enter the patient's full name.</div>
+
+            <!-- ACTION BAR -->
+            <div class="action-bar">
+                <button class="action-btn summary" id="summaryBtn">📄 Summary</button>
+                <button class="action-btn print" id="printBtn">🖨️ Print</button>
+                <button class="action-btn pdf" id="pdfBtn">📄 PDF</button>
+                <button class="action-btn new-patient" id="newPatientBtn">🔄 New Patient</button>
+                <button class="action-btn reset" id="resetBtn">✖️ Clear</button>
+            </div>
+
+            <!-- RESULT AREA -->
+            <div class="result-area" id="resultArea">
+                <div class="medical-doc" id="medicalDoc">
+
+                    <div class="doc-header">
+                        <h2>🌿 UVEDAUS - HEALTH REPORT</h2>
+                        <div class="doc-sub">Ayurveda · Zodiac · Numerology · Solar Analysis</div>
+                        <div class="doc-id">ID: <span id="docId">MD-2026-0001</span></div>
+                    </div>
+
+                    <div class="patient-summary" id="patientSummary">
+                        <div class="item"><span class="label">Patient Name</span><span class="value" id="sumName">-</span></div>
+                        <div class="item"><span class="label">Gender</span><span class="value" id="sumGender">-</span></div>
+                        <div class="item"><span class="label">Date of Birth</span><span class="value small" id="sumDob">-</span></div>
+                        <div class="item"><span class="label">Age</span><span class="value" id="sumAge">-</span></div>
+                        <div class="item"><span class="label">Phone</span><span class="value small" id="sumPhone">-</span></div>
+                        <div class="item"><span class="label">Address</span><span class="value small" id="sumAddress">-</span></div>
+                    </div>
+
+                    <div class="vitals-display">
+                        <div class="vit-item"><div class="vlabel">Weight</div><div class="vvalue" id="vitWeight">-</div></div>
+                        <div class="vit-item"><div class="vlabel">Pressure</div><div class="vvalue" id="vitPressure">-</div></div>
+                        <div class="vit-item"><div class="vlabel">Glucose</div><div class="vvalue" id="vitSugar">-</div></div>
+                        <div class="vit-item"><div class="vlabel">Symptoms</div><div class="vvalue" id="vitSymptoms" style="font-size:10px;">-</div></div>
+                    </div>
+
+                    <div class="health-meter">
+                        <div class="label"><span>💚 Health Score</span><span id="healthScoreLabel">0%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" id="healthBar" style="width:0%;"></div></div>
+                    </div>
+
+                    <div class="analysis-section">
+                        <h3>📖 Analysis Summary</h3>
+                        <div class="content" id="analysisContent"><p style="color:rgba(255,255,255,0.2);">Awaiting diagnostic analysis...</p></div>
+                    </div>
+
+                    <div class="ai-full-text">
+                        <h3>📝 Comprehensive Diagnostic Report</h3>
+                        <div class="content" id="fullAIContent"><p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p></div>
+                    </div>
+
+                    <div class="doc-footer">
+                        <span>🌿 Uvedaus - Pro Human Analysis · Made from India · Developed by DR WILLIAM HERBAL CLINIC TANZANIA</span>
+                        <br>
+                        <span style="font-size:7px;">Date: <span id="docDate"></span> · All rights reserved</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:10px;color:rgba(255,255,255,0.03);font-size:8px;position:relative;z-index:1;">
+                Uvedaus v4.0 · DR WILLIAM HERBAL CLINIC TZ
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== PROCESSING OVERLAY ===== -->
+    <div class="processing-overlay" id="processingOverlay">
+        <div class="pulse-circle"></div>
+        <div class="bip-text">⚡ BIP · BIP · BIP ⚡</div>
+        <div class="progress-text" id="processingText">Initializing TENS/EMS connection...</div>
+        <div class="error-text" id="errorText">❌ CONNECTION ERROR<br>Electrode pads failed to establish stable signal.<br>Please verify pad placement and try again.</div>
+    </div>
+
+    <!-- ===== REMOVE PADS MODAL ===== -->
+    <div class="remove-pads-modal" id="removePadsModal">
+        <div class="remove-pads-box">
+            <span class="icon">⚡</span>
+            <h2>REMOVE ELECTRODE PADS</h2>
+            <p>Electrode pads must be removed from the patient's epidermis.<br>
+            Analysis sequence has been completed. Press OK to access the full diagnostic report.</p>
+            <button class="btn-ok" id="removePadsOk">✅ OK</button>
+        </div>
+    </div>
+
+    <!-- ===== SUMMARY OVERLAY ===== -->
+    <div class="summary-overlay" id="summaryOverlay">
+        <div class="spinner-big"></div>
+        <p>📄 Generating Patient Summary Report...</p>
+        <div class="progress-text" id="progressText">Processing clinical data & compiling diagnostic matrix</div>
+    </div>
+
+    <script>
+        // ============================================================
+        // CONFIGURATION
+        // ============================================================
+        const API_KEY = "grXVZLKMlRgW8KJZ7YlihZWuAQTh2YEk";
+        const API_URL = "https://api.mistral.ai/v1/chat/completions";
+
+        // ============================================================
+        // LOGIN SYSTEM
+        // ============================================================
+        const loginScreen = document.getElementById('loginScreen');
+        const mainApp = document.getElementById('mainApp');
+        const loginUser = document.getElementById('loginUser');
+        const loginPass = document.getElementById('loginPass');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+
+        const ADMIN_USER = "admin";
+        const ADMIN_PASS = "123";
+
+        loginBtn.addEventListener('click', function() {
+            const user = loginUser.value.trim();
+            const pass = loginPass.value.trim();
+
+            if (user === ADMIN_USER && pass === ADMIN_PASS) {
+                loginScreen.classList.add('hidden');
+                mainApp.classList.add('active');
+                loginError.classList.remove('active');
+            } else {
+                loginError.classList.add('active');
+                setTimeout(() => { loginError.classList.remove('active'); }, 3000);
+            }
+        });
+
+        loginPass.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') loginBtn.click();
+        });
+
+        loginUser.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') loginPass.focus();
+        });
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const patientName = document.getElementById('patientName');
+        const patientGender = document.getElementById('patientGender');
+        const patientYear = document.getElementById('patientYear');
+        const patientMonth = document.getElementById('patientMonth');
+        const patientDay = document.getElementById('patientDay');
+        const patientTime = document.getElementById('patientTime');
+        const patientPhone = document.getElementById('patientPhone');
+        const patientAddress = document.getElementById('patientAddress');
+        const patientWeight = document.getElementById('patientWeight');
+        const patientPressure = document.getElementById('patientPressure');
+        const patientSugar = document.getElementById('patientSugar');
+        const patientSymptoms = document.getElementById('patientSymptoms');
+        const patientNotes = document.getElementById('patientNotes');
+
+        const connectBtn = document.getElementById('connectBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const resultArea = document.getElementById('resultArea');
+        const summaryBtn = document.getElementById('summaryBtn');
+        const printBtn = document.getElementById('printBtn');
+        const pdfBtn = document.getElementById('pdfBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const newPatientBtn = document.getElementById('newPatientBtn');
+
+        const sumName = document.getElementById('sumName');
+        const sumGender = document.getElementById('sumGender');
+        const sumDob = document.getElementById('sumDob');
+        const sumAge = document.getElementById('sumAge');
+        const sumPhone = document.getElementById('sumPhone');
+        const sumAddress = document.getElementById('sumAddress');
+        const vitWeight = document.getElementById('vitWeight');
+        const vitPressure = document.getElementById('vitPressure');
+        const vitSugar = document.getElementById('vitSugar');
+        const vitSymptoms = document.getElementById('vitSymptoms');
+        const healthBar = document.getElementById('healthBar');
+        const healthScoreLabel = document.getElementById('healthScoreLabel');
+        const analysisContent = document.getElementById('analysisContent');
+        const fullAIContent = document.getElementById('fullAIContent');
+        const docDate = document.getElementById('docDate');
+        const docId = document.getElementById('docId');
+
+        const processingOverlay = document.getElementById('processingOverlay');
+        const processingText = document.getElementById('processingText');
+        const errorText = document.getElementById('errorText');
+        const removePadsModal = document.getElementById('removePadsModal');
+        const removePadsOk = document.getElementById('removePadsOk');
+        const summaryOverlay = document.getElementById('summaryOverlay');
+        const progressText = document.getElementById('progressText');
+        const connectStatus = document.getElementById('connectStatus');
+        const secretBtn = document.getElementById('secretBtn');
+
+        let lastAIResponse = '';
+        let lastPatientData = {};
+        let isProcessing = false;
+        let secretActivated = false;
+
+        // ============================================================
+        // SECRET BUTTON LOGIC
+        // ============================================================
+        secretBtn.addEventListener('click', function() {
+            secretActivated = true;
+            console.log('🔑 SECRET ACTIVATED - Analysis will proceed');
+            // Visual feedback
+            this.style.background = 'rgba(46, 204, 113, 0.2)';
+            this.style.color = '#2ecc71';
+            setTimeout(() => {
+                this.style.background = 'rgba(255, 215, 0, 0.05)';
+                this.style.color = 'rgba(255, 215, 0, 0.05)';
+            }, 1500);
+        });
+
+        // ============================================================
+        // GENERATE DOC ID & DATE
+        // ============================================================
+        function generateDocId() {
+            const now = new Date();
+            const y = now.getFullYear();
+            const m = String(now.getMonth() + 1).padStart(2, '0');
+            const d = String(now.getDate()).padStart(2, '0');
+            const r = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+            return `UV-${y}${m}${d}-${r}`;
+        }
+
+        function updateDate() {
+            const now = new Date();
+            docDate.textContent = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        updateDate();
+        docId.textContent = generateDocId();
+
+        // ============================================================
+        // CALCULATE AGE & ZODIAC
+        // ============================================================
+        function calculateAge(year, month, day) {
+            const today = new Date();
+            const birth = new Date(year, month - 1, day);
+            let age = today.getFullYear() - birth.getFullYear();
+            const m = today.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+            return age;
+        }
+
+        function getZodiac(month, day) {
+            const signs = [
+                { name: 'Aries', start: [3, 21], end: [4, 19] },
+                { name: 'Taurus', start: [4, 20], end: [5, 20] },
+                { name: 'Gemini', start: [5, 21], end: [6, 20] },
+                { name: 'Cancer', start: [6, 21], end: [7, 22] },
+                { name: 'Leo', start: [7, 23], end: [8, 22] },
+                { name: 'Virgo', start: [8, 23], end: [9, 22] },
+                { name: 'Libra', start: [9, 23], end: [10, 22] },
+                { name: 'Scorpio', start: [10, 23], end: [11, 21] },
+                { name: 'Sagittarius', start: [11, 22], end: [12, 21] },
+                { name: 'Capricorn', start: [12, 22], end: [1, 19] },
+                { name: 'Aquarius', start: [1, 20], end: [2, 18] },
+                { name: 'Pisces', start: [2, 19], end: [3, 20] }
+            ];
+
+            for (let s of signs) {
+                let sm = s.start[0],
+                    sd = s.start[1];
+                let em = s.end[0],
+                    ed = s.end[1];
+                if (s.name === 'Capricorn') {
+                    if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return s.name;
+                }
+                if (month === sm && day >= sd) return s.name;
+                if (month === em && day <= ed) return s.name;
+                if (month > sm && month < em) return s.name;
+            }
+            return 'Unknown';
+        }
+
+        // ============================================================
+        // CALL MISTRAL AI - ENGLISH ONLY
+        // ============================================================
+        async function analyzeWithAI(name, gender, age, zodiac, weight, pressure, sugar, symptoms, notes, dob, time) {
+            const systemPrompt = `You are a senior Ayurvedic and Integrative Medicine specialist with expertise in Onomastics (Name Science), Vedic Astrology, Numerology, Solar Analysis, Traditional Chinese Medicine (TCM), Unani (Arabic) Medicine, and Evidence-Based Modern Medical Science.
+
+            PROVIDE COMPLETE RESPONSE - DO NOT TRUNCATE.
+            Each point should be concise (1-2 sentences) but clinically insightful.
+            Use formal medical terminology with some Sanskrit/Ayurvedic terms explained in parentheses.
+
+            Structure your response with these sections:
+
+            SECTION 1: NAME & NUMEROLOGY ANALYSIS
+            - Etymological meaning and origin of the name (2-3 points)
+            - Numerological significance and vibrational frequency (2-3 points)
+            - Personality architecture and behavioral patterns (2 points)
+
+            SECTION 2: ZODIAC & SOLAR ANALYSIS
+            - Zodiacal signature and its physiological implications (3-4 points)
+            - Constitutional strengths and systemic vulnerabilities (3 points)
+            - Most susceptible organ system (2-3 points)
+
+            SECTION 3: AYURVEDIC & DOSHA ANALYSIS
+            - Primary dosha constitution (Vata/Pitta/Kapha) (2-3 points)
+            - Pathophysiological impact of dosha imbalance (2-3 points)
+            - Required lifestyle modifications (3 points)
+
+            SECTION 4: SYMPTOMATIC ANALYSIS
+            - Etiological root causes of presenting symptoms (3-4 points)
+            - Most affected anatomical structures (2 points)
+            - Risk stratification and prognostic indicators (2 points)
+
+            SECTION 5: THERAPEUTIC RECOMMENDATIONS
+            - Dietary modifications (3 points)
+            - Physical activity protocols (2 points)
+            - Sleep hygiene and circadian optimization (2 points)
+            - Contraindications and substances to avoid (2 points)
+
+            SECTION 6: HERBAL & NATURAL PHARMACOLOGY
+            - 5 Chinese botanicals with therapeutic indications
+            - 5 Ayurvedic herbs with mechanisms of action
+            - 5 Unani (Arabic) medicinal compounds
+            - 5 Scientifically validated phytochemicals
+            - Administration protocols (3 points)
+
+            SECTION 7: COMPREHENSIVE HEALTH SCORE
+            - Score 0-100 with clinical rationale
+            - Explanation with physiological parameters (3 points)
+
+            SECTION 8: SUGGESTED DIAGNOSTIC IMPRESSIONS
+            - Provide 8-12 disease entities in English that this patient may be at risk for
+            - Format as a simple bullet list with NO explanations
+            - Use proper medical terminology
+
+            RESPOND EXCLUSIVELY IN FORMAL MEDICAL ENGLISH.
+            DO NOT CUT OFF - COMPLETE FULL RESPONSE.`;
+
+            const userPrompt = `
+            Patient Name: ${name}
+            Gender: ${gender}
+            Age: ${age} years
+            Date of Birth: ${dob}
+            Time of Birth: ${time || 'Not documented'}
+            Zodiac Sign: ${zodiac}
+            Body Mass: ${weight}kg
+            Blood Pressure: ${pressure}
+            Blood Glucose: ${sugar}
+            Presenting Complaints/Symptoms: ${symptoms || 'None specified'}
+            Additional Medical History: ${notes || 'None specified'}
+
+            Please provide a comprehensive integrative health analysis.`;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: 'mistral-large-latest',
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: userPrompt }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 8000
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || 'API request failed');
+                }
+
+                const data = await response.json();
+                return data.choices[0].message.content;
+
+            } catch (error) {
+                console.error('Mistral API Error:', error);
+                throw new Error(error.message || 'Communication error with AI diagnostic service');
+            }
+        }
+
+        // ============================================================
+        // PARSE AND RENDER
+        // ============================================================
+        function parseAndRender(response, name, gender, dob, age, zodiac, phone, address, weight, pressure, sugar,
+            symptoms, notes) {
+
+            // Extract health score
+            let healthScore = 70;
+            const scoreMatch = response.match(/(\d{1,3})\s*(?:%|\/100)/);
+            if (scoreMatch) {
+                healthScore = Math.min(100, Math.max(0, parseInt(scoreMatch[1])));
+            } else {
+                const anyNum = response.match(/\b(\d{1,3})\b/);
+                if (anyNum && parseInt(anyNum[1]) >= 0 && parseInt(anyNum[1]) <= 100) {
+                    healthScore = parseInt(anyNum[1]);
+                }
+            }
+
+            // Clean response
+            let cleanResponse = response
+                .replace(/\*\*/g, '')
+                .replace(/\*/g, '')
+                .replace(/__/g, '')
+                .replace(/_/g, '')
+                .replace(/#/g, '')
+                .replace(/```/g, '')
+                .replace(/`/g, '');
+
+            // Store for summary
+            lastAIResponse = cleanResponse;
+            lastPatientData = { name, gender, dob, age, zodiac, phone, address, weight, pressure, sugar, symptoms, notes };
+
+            // Split into sections
+            let paragraphs = cleanResponse.split(/\n{1,}/);
+            let formattedFull = paragraphs.map(p => {
+                let trimmed = p.trim();
+                if (trimmed.length === 0) return '';
+
+                if (trimmed.match(/^SECTION|^NAME|^ZODIAC|^AYURVED|^SYMPTOM|^THERAPEUTIC|^HERBAL|^COMPREHENSIVE|^SUGGESTED/i)) {
+                    return `<p class="section-title" style="color:#ffd700;font-weight:600;margin-top:8px;padding-top:4px;border-top:1px solid rgba(255,215,0,0.05);">${trimmed}</p>`;
+                }
+                if (trimmed.match(/^\d+[\.\)]|^[-•]|^[A-Z][a-z]+:/)) {
+                    return `<p class="point" style="padding-left:14px;margin-bottom:2px;position:relative;">${trimmed}</p>`;
+                }
+                return `<p>${trimmed}</p>`;
+            }).join('');
+
+            // Extract summary
+            let summary = cleanResponse.substring(0, 350);
+            let summaryHtml = `<p>${summary}...</p>`;
+            summaryHtml +=
+                `<p style="color:rgba(255,255,255,0.15);font-size:10px;margin-top:4px;">⬇️ Complete diagnostic report available below</p>`;
+
+            // Update patient summary
+            sumName.textContent = name || '-';
+            sumGender.textContent = gender || '-';
+            sumDob.textContent = dob || '-';
+            sumAge.textContent = age !== null && age !== '' ? `${age} years` : '-';
+            sumPhone.textContent = phone || '-';
+            sumAddress.textContent = address || '-';
+
+            // Update vitals
+            vitWeight.textContent = weight ? `${weight} kg` : '-';
+            vitPressure.textContent = pressure || '-';
+            vitSugar.textContent = sugar || '-';
+            vitSymptoms.textContent = symptoms ? symptoms.substring(0, 30) + (symptoms.length > 30 ? '...' : '') : '-';
+
+            // Update health meter
+            healthScoreLabel.textContent = `${healthScore}%`;
+            healthBar.style.width = `${healthScore}%`;
+
+            // Update analysis
+            analysisContent.innerHTML = summaryHtml;
+            fullAIContent.innerHTML = formattedFull;
+        }
+
+        // ============================================================
+        // EXTRACT DISEASES LIST FOR SUMMARY
+        // ============================================================
+        function extractDiseasesList(response) {
+            const diseases = [];
+            const lines = response.split('\n');
+            let inSection = false;
+
+            for (let line of lines) {
+                const trimmed = line.trim();
+                if (trimmed.match(/SUGGESTED DIAGNOSTIC|SECTION 8|DIAGNOSTIC IMPRESSIONS|DISEASE ENTITIES/i)) {
+                    inSection = true;
+                    continue;
+                }
+                if (inSection && trimmed.match(/^SECTION|^NAME|^ZODIAC|^AYURVED|^SYMPTOM|^THERAPEUTIC|^HERBAL|^COMPREHENSIVE/i)) {
+                    break;
+                }
+                if (inSection && trimmed.length > 0 && !trimmed.match(/^[\d\.\-\s]+$/)) {
+                    const clean = trimmed.replace(/^[\d\.\)\-•\s]+/, '').trim();
+                    if (clean.length > 3 && !clean.match(/^how|^to|^use|^and|^with|^for|^the|^these|^admin|^protocol/i)) {
+                        diseases.push(clean);
+                    }
+                }
+            }
+
+            if (diseases.length < 3) {
+                const diseaseKeywords = [
+                    'Essential Hypertension', 'Type 2 Diabetes Mellitus', 'Osteoarthritis',
+                    'Bronchial Asthma', 'Chronic Migraine', 'Insomnia Disorder',
+                    'Generalized Anxiety Disorder', 'Major Depressive Disorder',
+                    'Peptic Ulcer Disease', 'Chronic Gastritis', 'Obesity',
+                    'Coronary Artery Disease', 'Cerebrovascular Accident', 'Hypothyroidism',
+                    'Allergic Rhinitis', 'Chronic Sinusitis', 'Chronic Bronchitis',
+                    'Chronic Kidney Disease', 'Non-Alcoholic Fatty Liver Disease',
+                    'Cholelithiasis', 'Inguinal Hernia', 'Hemorrhoidal Disease',
+                    'Osteoporosis', 'Gout', 'Fibromyalgia Syndrome',
+                    'Irritable Bowel Syndrome', 'Crohn\'s Disease', 'Ulcerative Colitis',
+                    'Polycystic Ovary Syndrome', 'Endometriosis',
+                    'Atopic Dermatitis', 'Psoriasis Vulgaris', 'Acne Vulgaris',
+                    'Cataract', 'Primary Open-Angle Glaucoma',
+                    'Periodontitis', 'Temporomandibular Joint Disorder'
+                ];
+
+                let found = [];
+                for (let kw of diseaseKeywords) {
+                    if (response.toLowerCase().includes(kw.toLowerCase())) {
+                        found.push(kw);
+                    }
+                }
+                if (found.length > 0) return found.slice(0, 12);
+                return [
+                    'Essential Hypertension', 'Type 2 Diabetes Mellitus',
+                    'Osteoarthritis', 'Generalized Anxiety Disorder',
+                    'Chronic Insomnia', 'Gastroesophageal Reflux Disease',
+                    'Obesity', 'Chronic Migraine', 'Allergic Rhinitis',
+                    'Hypothyroidism'
+                ];
+            }
+            return diseases.slice(0, 15);
+        }
+
+        // ============================================================
+        // GENERATE SUMMARY
+        // ============================================================
+        function generateSummary() {
+            if (!lastAIResponse || !lastPatientData.name) {
+                alert('⚠️ Please complete a diagnostic analysis before generating a summary.');
+                return;
+            }
+
+            summaryOverlay.classList.add('active');
+            progressText.textContent = 'Analyzing clinical data...';
+
+            const data = lastPatientData;
+            const diseases = extractDiseasesList(lastAIResponse);
+
+            setTimeout(() => { progressText.textContent = 'Generating comprehensive health report...'; }, 800);
+            setTimeout(() => { progressText.textContent = 'Compiling diagnostic impressions...'; }, 1600);
+            setTimeout(() => { progressText.textContent = 'Finalizing clinical document...'; }, 2400);
+
+            setTimeout(() => {
+                const summaryHTML = `
+                    <html>
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Uvedaus - Patient Summary</title>
+                        <style>
+                            * { margin:0; padding:0; box-sizing:border-box; }
+                            body { font-family: 'Segoe UI','Arial',sans-serif; background:#fff; padding:40px 35px; max-width:900px; margin:0 auto; color:#1a1a2e; }
+                            .header { text-align:center; border-bottom:3px solid #ffd700; padding-bottom:15px; margin-bottom:20px; }
+                            .header h1 { color:#1a1a2e; font-size:26px; letter-spacing:2px; font-family:'Playfair Display',serif; }
+                            .header .sub { color:#666; font-size:12px; letter-spacing:1px; }
+                            .header .clinic { color:#999; font-size:10px; margin-top:3px; }
+                            .patient-details { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px 20px; background:#f5f5f5; padding:15px 20px; border-radius:10px; margin-bottom:20px; }
+                            .patient-details .item .label { color:#888; font-size:9px; text-transform:uppercase; letter-spacing:0.5px; }
+                            .patient-details .item .value { color:#1a1a2e; font-size:14px; font-weight:600; }
+                            .section-title { color:#ffd700; font-size:16px; font-weight:700; margin-top:20px; margin-bottom:8px; border-bottom:2px solid #ffd700; padding-bottom:5px; }
+                            .disease-list { background:#f9f9f9; padding:15px 20px; border-radius:10px; margin-top:10px; border-left:4px solid #ffd700; }
+                            .disease-list ul { columns:2; list-style:none; padding:0; }
+                            .disease-list ul li { padding:4px 0 4px 20px; position:relative; font-size:12px; color:#1a1a2e; }
+                            .disease-list ul li::before { content:"•"; color:#ffd700; position:absolute; left:0; font-weight:700; }
+                            .footer { text-align:center; margin-top:30px; padding-top:15px; border-top:1px solid #ddd; color:#999; font-size:10px; }
+                            .footer .clinic-name { color:#666; font-weight:600; }
+                            @media print { body { padding:20px; } .no-print { display:none; } }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="header">
+                            <h1>🌿 UVEDAUS - PRO HUMAN ANALYSIS</h1>
+                            <div class="sub">Comprehensive Health Assessment · Ayurveda · Zodiac · Numerology</div>
+                            <div class="clinic">Made from India · Developed by DR WILLIAM HERBAL CLINIC TANZANIA</div>
+                            <div style="font-size:10px;color:#aaa;margin-top:3px;">Report ID: ${generateDocId()} | Date: ${new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})}</div>
+                        </div>
+
+                        <div class="patient-details">
+                            <div class="item"><div class="label">Patient Name</div><div class="value">${data.name || '-'}</div></div>
+                            <div class="item"><div class="label">Gender</div><div class="value">${data.gender || '-'}</div></div>
+                            <div class="item"><div class="label">Date of Birth</div><div class="value">${data.dob || '-'}</div></div>
+                            <div class="item"><div class="label">Age</div><div class="value">${data.age || '-'} years</div></div>
+                            <div class="item"><div class="label">Phone</div><div class="value">${data.phone || '-'}</div></div>
+                            <div class="item"><div class="label">Address</div><div class="value">${data.address || '-'}</div></div>
+                            <div class="item"><div class="label">Weight</div><div class="value">${data.weight || '-'} kg</div></div>
+                            <div class="item"><div class="label">Blood Pressure</div><div class="value">${data.pressure || '-'}</div></div>
+                            <div class="item"><div class="label">Blood Glucose</div><div class="value">${data.sugar || '-'}</div></div>
+                            <div class="item" style="grid-column:1/-1;"><div class="label">Presenting Symptoms</div><div class="value" style="font-weight:400;">${data.symptoms || 'None reported'}</div></div>
+                            <div class="item" style="grid-column:1/-1;"><div class="label">Medical History</div><div class="value" style="font-weight:400;">${data.notes || 'None documented'}</div></div>
+                            <div class="item"><div class="label">Zodiac Sign</div><div class="value">${data.zodiac || '-'}</div></div>
+                        </div>
+
+                        <div class="section-title">🩺 DIAGNOSTIC IMPRESSIONS</div>
+                        <div class="disease-list">
+                            <ul>
+                                ${diseases.map(d => `<li>${d}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">
+                            ⚕️ Based on integrative analysis incorporating Ayurvedic, Zodiac, and symptomatic parameters. Clinical correlation and definitive diagnosis require confirmation through standard medical evaluation.
+                        </div>
+
+                        <div class="footer">
+                            <div class="clinic-name">DR WILLIAM HERBAL CLINIC TANZANIA</div>
+                            <div>🌿 Uvedaus - Pro Human Analysis v4.0 · All rights reserved</div>
+                            <div style="font-size:8px;margin-top:2px;">This report is for informational purposes only and does not substitute professional medical advice.</div>
+                        </div>
+                    </body>
+                    </html>
+                `;
+
+                const win = window.open('', '_blank', 'width=900,height=700');
+                if (win) {
+                    win.document.write(summaryHTML);
+                    win.document.close();
+                    win.focus();
+                    setTimeout(() => { win.print(); }, 800);
+                } else {
+                    alert('⚠️ Please allow popups to generate the summary.');
+                }
+
+                summaryOverlay.classList.remove('active');
+            }, 3200);
+        }
+
+        // ============================================================
+        // MAIN CONNECT FLOW WITH SECRET BUTTON LOGIC
+        // ============================================================
+        async function handleConnect() {
+            if (isProcessing) return;
+
+            const name = patientName.value.trim();
+            const gender = patientGender.value;
+            const year = patientYear.value.trim();
+            const month = patientMonth.value.trim();
+            const day = patientDay.value.trim();
+            const time = patientTime.value.trim();
+            const phone = patientPhone.value.trim();
+            const address = patientAddress.value.trim();
+            const weight = patientWeight.value.trim();
+            const pressure = patientPressure.value.trim();
+            const sugar = patientSugar.value.trim();
+            const symptoms = patientSymptoms.value.trim();
+            const notes = patientNotes.value.trim();
+
+            if (name.length < 2) {
+                errorMsg.textContent = '⚠️ Please enter the patient\'s full name.';
+                errorMsg.classList.add('active');
+                resultArea.classList.remove('active');
+                return;
+            }
+            errorMsg.classList.remove('active');
+
+            let dob = '-';
+            let age = null;
+            let zodiac = 'Unknown';
+            if (year && month && day) {
+                const y = parseInt(year);
+                const m = parseInt(month);
+                const d = parseInt(day);
+                if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+                    dob = `${d}/${m}/${y}`;
+                    age = calculateAge(y, m, d);
+                    zodiac = getZodiac(m, d);
+                }
+            }
+
+            isProcessing = true;
+            connectBtn.classList.add('loading');
+            connectBtn.disabled = true;
+            resultArea.classList.remove('active');
+
+            connectStatus.textContent = '⏳ CONNECTING...';
+            connectStatus.style.color = '#ffd700';
+
+            // Show processing overlay
+            processingOverlay.classList.add('active');
+            errorText.classList.remove('active');
+            processingText.textContent = 'Initializing TENS/EMS connection...';
+
+            const stages = [
+                { time: 1200, text: '⚡ Calibrating electrode impedance...' },
+                { time: 2800, text: '⚡ Signal acquisition: 87%...' },
+                { time: 4200, text: '⚡ Analyzing bioelectrical conductance...' },
+                { time: 5800, text: '⚡ Processing neural pathway data...' },
+                { time: 7200, text: '⚡ Synchronizing with AI diagnostic core...' },
+                { time: 8800, text: '⚡ Generating comprehensive health matrix...' }
+            ];
+
+            for (let stage of stages) {
+                setTimeout(() => {
+                    processingText.textContent = stage.text;
+                }, stage.time);
+            }
+
+            // Wait for stages to complete
+            await new Promise(resolve => setTimeout(resolve, 9500));
+
+            // --- SECRET BUTTON CHECK ---
+            if (!secretActivated) {
+                // SECRET NOT ACTIVATED - Show ERROR
+                processingText.textContent = '⚠️ ERROR: Connection failed';
+                errorText.classList.add('active');
+                connectStatus.textContent = '❌ CONNECTION ERROR';
+                connectStatus.style.color = '#ff6b6b';
+                connectStatus.classList.add('error');
+
+                // Keep spinning indefinitely
+                await new Promise(resolve => setTimeout(resolve, 10000));
+
+                // After long wait, show final error
+                processingText.textContent = '⚠️ SYSTEM TIMEOUT - PADS NOT DETECTED';
+                errorText.textContent = '❌ CONNECTION ERROR\nElectrode pads failed to establish stable signal.\nPlease verify pad placement and try again.';
+                errorText.classList.add('active');
+
+                // Keep showing error
+                await new Promise(resolve => setTimeout(resolve, 5000));
+
+                // Finally reset
+                processingOverlay.classList.remove('active');
+                connectStatus.textContent = '🔴 NOT CONNECTED';
+                connectStatus.style.color = '#ffd700';
+                connectStatus.classList.remove('error');
+                isProcessing = false;
+                connectBtn.classList.remove('loading');
+                connectBtn.disabled = false;
+                secretActivated = false;
+                return;
+            }
+
+            // --- SECRET ACTIVATED - PROCEED WITH ANALYSIS ---
+            processingText.textContent = '⚡ Connection established. Processing diagnostic data...';
+            errorText.classList.remove('active');
+
+            try {
+                const aiResponse = await analyzeWithAI(
+                    name, gender, age || 'unknown', zodiac,
+                    weight || 'unknown', pressure || 'unknown',
+                    sugar || 'unknown', symptoms || 'None',
+                    notes || 'None', dob, time
+                );
+
+                parseAndRender(
+                    aiResponse,
+                    name, gender, dob, age, zodiac,
+                    phone || '-', address || '-',
+                    weight || '-', pressure || '-',
+                    sugar || '-', symptoms || '-', notes || '-'
+                );
+
+                processingOverlay.classList.remove('active');
+
+                connectStatus.textContent = '✅ CONNECTED - ANALYSIS COMPLETE';
+                connectStatus.style.color = '#2ecc71';
+                connectStatus.classList.add('connected');
+
+                removePadsModal.classList.add('active');
+
+                // Reset secret button for next use
+                secretActivated = false;
+
+            } catch (error) {
+                processingOverlay.classList.remove('active');
+                const errorHtml = `
+                            <p style="color:#ff6b6b;text-align:center;padding:14px;">
+                                <span style="font-size:24px;display:block;margin-bottom:6px;">⚠️</span>
+                                <strong>Diagnostic Error:</strong><br>
+                                ${error.message}
+                            </p>
+                            <p style="color:rgba(255,255,255,0.12);text-align:center;font-size:10px;margin-top:4px;">
+                                Please verify network connectivity and retry.
+                            </p>
+                        `;
+                analysisContent.innerHTML = errorHtml;
+                resultArea.classList.add('active');
+                connectStatus.textContent = '❌ CONNECTION FAILED';
+                connectStatus.style.color = '#ff6b6b';
+                connectStatus.classList.remove('connected');
+                secretActivated = false;
+            } finally {
+                isProcessing = false;
+                connectBtn.classList.remove('loading');
+                connectBtn.disabled = false;
+            }
+        }
+
+        // ============================================================
+        // REMOVE PADS OK - SHOW RESULTS
+        // ============================================================
+        removePadsOk.addEventListener('click', function() {
+            removePadsModal.classList.remove('active');
+            resultArea.classList.add('active');
+            setTimeout(() => {
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        });
+
+        // ============================================================
+        // NEW PATIENT - Reset for new patient
+        // ============================================================
+        function newPatient() {
+            patientName.value = '';
+            patientGender.value = 'Male';
+            patientYear.value = '';
+            patientMonth.value = '';
+            patientDay.value = '';
+            patientTime.value = '';
+            patientPhone.value = '';
+            patientAddress.value = '';
+            patientWeight.value = '';
+            patientPressure.value = '';
+            patientSugar.value = '';
+            patientSymptoms.value = '';
+            patientNotes.value = '';
+            resultArea.classList.remove('active');
+            errorMsg.classList.remove('active');
+            connectBtn.classList.remove('loading');
+            connectBtn.disabled = false;
+            isProcessing = false;
+            healthBar.style.width = '0%';
+            healthScoreLabel.textContent = '0%';
+            analysisContent.innerHTML = '<p style="color:rgba(255,255,255,0.2);">Awaiting diagnostic analysis...</p>';
+            fullAIContent.innerHTML = '<p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p>';
+            lastAIResponse = '';
+            lastPatientData = {};
+            connectStatus.textContent = '🔴 NOT CONNECTED';
+            connectStatus.style.color = '#ffd700';
+            connectStatus.classList.remove('connected', 'error');
+            secretActivated = false;
+            patientName.focus();
+            docId.textContent = generateDocId();
+            // Reset processing overlay
+            processingOverlay.classList.remove('active');
+            errorText.classList.remove('active');
+        }
+
+        // ============================================================
+        // PRINT / PDF / RESET
+        // ============================================================
+        function printDocument() { window.print(); }
+
+        function pdfExport() { window.print(); }
+
+        function resetForm() {
+            patientName.value = '';
+            patientGender.value = 'Male';
+            patientYear.value = '';
+            patientMonth.value = '';
+            patientDay.value = '';
+            patientTime.value = '';
+            patientPhone.value = '';
+            patientAddress.value = '';
+            patientWeight.value = '';
+            patientPressure.value = '';
+            patientSugar.value = '';
+            patientSymptoms.value = '';
+            patientNotes.value = '';
+            resultArea.classList.remove('active');
+            errorMsg.classList.remove('active');
+            connectBtn.classList.remove('loading');
+            connectBtn.disabled = false;
+            isProcessing = false;
+            healthBar.style.width = '0%';
+            healthScoreLabel.textContent = '0%';
+            analysisContent.innerHTML = '<p style="color:rgba(255,255,255,0.2);">Awaiting diagnostic analysis...</p>';
+            fullAIContent.innerHTML = '<p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p>';
+            lastAIResponse = '';
+            lastPatientData = {};
+            connectStatus.textContent = '🔴 NOT CONNECTED';
+            connectStatus.style.color = '#ffd700';
+            connectStatus.classList.remove('connected', 'error');
+            secretActivated = false;
+            patientName.focus();
+            docId.textContent = generateDocId();
+            processingOverlay.classList.remove('active');
+            errorText.classList.remove('active');
+        }
+
+        // ============================================================
+        // EVENT LISTENERS
+        // ============================================================
+        connectBtn.addEventListener('click', handleConnect);
+        summaryBtn.addEventListener('click', generateSummary);
+        printBtn.addEventListener('click', printDocument);
+        pdfBtn.addEventListener('click', pdfExport);
+        resetBtn.addEventListener('click', resetForm);
+        newPatientBtn.addEventListener('click', newPatient);
+
+        patientName.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleConnect();
+            }
+        });
+
+        patientName.focus();
+
+        // ============================================================
+        // SAMPLE DATA (uncomment for testing)
+        // ============================================================
+        // patientName.value = 'Baraka Richard Nonya';
+        // patientGender.value = 'Male';
+        // patientYear.value = '1995';
+        // patientMonth.value = '6';
+        // patientDay.value = '15';
+        // patientTime.value = '14:30';
+        // patientPhone.value = '0762286282';
+        // patientAddress.value = 'Dar es Salaam, Ilala';
+        // patientWeight.value = '75';
+        // patientPressure.value = '120/80';
+        // patientSugar.value = '90';
+        // patientSymptoms.value = 'Recurrent cephalalgia, chronic fatigue, episodic vertigo. Sleep disturbance with difficulty maintaining sleep.';
+        // patientNotes.value = 'No documented chronic pathologies. Occasional antihypertensive medication use.';
+    </script>
+
+</body>
+</html>
