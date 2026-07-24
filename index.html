@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>UVEDAUS - PRO Human Analysis</title>
+    
+    <!-- jsPDF na autoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js">
+    </script>
+    
     <style>
         /* ===== GLOBAL ===== */
         * {
@@ -1240,9 +1247,9 @@
                     <strong>⚕️ Uvedaus - Pro Human Analysis</strong><br>
                     This system utilizes patient name and biometric data to generate comprehensive health analytics
                     through <strong>AYURVEDIC</strong> methodology. It integrates <strong>Zodiac, Numerology, Solar,
-                    and Numerical</strong> analysis to identify <strong>primary systemic vulnerabilities</strong>.
+                        and Numerical</strong> analysis to identify <strong>primary systemic vulnerabilities</strong>.
                     The diagnostic framework incorporates <strong>Traditional Chinese Medicine (TCM),
-                    Unani (Arabic) Medicine, and Evidence-Based Scientific Protocols</strong>
+                        Unani (Arabic) Medicine, and Evidence-Based Scientific Protocols</strong>
                     for maximum diagnostic precision.
                 </p>
             </div>
@@ -1348,10 +1355,10 @@
 
             <!-- ACTION BAR -->
             <div class="action-bar">
-                <button class="action-btn summary" id="summaryBtn">📄 Summary</button>
+                <button class="action-btn summary" id="summaryBtn">📄 Report</button>
                 <button class="action-btn print" id="printBtn">🖨️ Print</button>
                 <button class="action-btn pdf" id="pdfBtn">📄 PDF</button>
-                <button class="action-btn new-patient" id="newPatientBtn">🔄 New Patient</button>
+                <button class="action-btn new-patient" id="newPatientBtn">🔄 New</button>
                 <button class="action-btn reset" id="resetBtn">✖️ Clear</button>
             </div>
 
@@ -1426,7 +1433,7 @@
             <span class="icon">⚡</span>
             <h2>REMOVE ELECTRODE PADS</h2>
             <p>Electrode pads must be removed from the patient's epidermis.<br>
-            Analysis sequence has been completed. Press OK to access the full diagnostic report.</p>
+                Analysis sequence has been completed. Press OK to access the full diagnostic report.</p>
             <button class="btn-ok" id="removePadsOk">✅ OK</button>
         </div>
     </div>
@@ -1544,7 +1551,6 @@
         secretBtn.addEventListener('click', function() {
             secretActivated = true;
             console.log('🔑 SECRET ACTIVATED - Analysis will proceed');
-            // Visual feedback
             this.style.background = 'rgba(46, 204, 113, 0.2)';
             this.style.color = '#2ecc71';
             setTimeout(() => {
@@ -1796,165 +1802,504 @@
         }
 
         // ============================================================
-        // EXTRACT DISEASES LIST FOR SUMMARY
+        // GENERATE SWAHILI PDF REPORT
         // ============================================================
-        function extractDiseasesList(response) {
-            const diseases = [];
-            const lines = response.split('\n');
-            let inSection = false;
-
-            for (let line of lines) {
-                const trimmed = line.trim();
-                if (trimmed.match(/SUGGESTED DIAGNOSTIC|SECTION 8|DIAGNOSTIC IMPRESSIONS|DISEASE ENTITIES/i)) {
-                    inSection = true;
-                    continue;
-                }
-                if (inSection && trimmed.match(/^SECTION|^NAME|^ZODIAC|^AYURVED|^SYMPTOM|^THERAPEUTIC|^HERBAL|^COMPREHENSIVE/i)) {
-                    break;
-                }
-                if (inSection && trimmed.length > 0 && !trimmed.match(/^[\d\.\-\s]+$/)) {
-                    const clean = trimmed.replace(/^[\d\.\)\-•\s]+/, '').trim();
-                    if (clean.length > 3 && !clean.match(/^how|^to|^use|^and|^with|^for|^the|^these|^admin|^protocol/i)) {
-                        diseases.push(clean);
-                    }
-                }
-            }
-
-            if (diseases.length < 3) {
-                const diseaseKeywords = [
-                    'Essential Hypertension', 'Type 2 Diabetes Mellitus', 'Osteoarthritis',
-                    'Bronchial Asthma', 'Chronic Migraine', 'Insomnia Disorder',
-                    'Generalized Anxiety Disorder', 'Major Depressive Disorder',
-                    'Peptic Ulcer Disease', 'Chronic Gastritis', 'Obesity',
-                    'Coronary Artery Disease', 'Cerebrovascular Accident', 'Hypothyroidism',
-                    'Allergic Rhinitis', 'Chronic Sinusitis', 'Chronic Bronchitis',
-                    'Chronic Kidney Disease', 'Non-Alcoholic Fatty Liver Disease',
-                    'Cholelithiasis', 'Inguinal Hernia', 'Hemorrhoidal Disease',
-                    'Osteoporosis', 'Gout', 'Fibromyalgia Syndrome',
-                    'Irritable Bowel Syndrome', 'Crohn\'s Disease', 'Ulcerative Colitis',
-                    'Polycystic Ovary Syndrome', 'Endometriosis',
-                    'Atopic Dermatitis', 'Psoriasis Vulgaris', 'Acne Vulgaris',
-                    'Cataract', 'Primary Open-Angle Glaucoma',
-                    'Periodontitis', 'Temporomandibular Joint Disorder'
-                ];
-
-                let found = [];
-                for (let kw of diseaseKeywords) {
-                    if (response.toLowerCase().includes(kw.toLowerCase())) {
-                        found.push(kw);
-                    }
-                }
-                if (found.length > 0) return found.slice(0, 12);
-                return [
-                    'Essential Hypertension', 'Type 2 Diabetes Mellitus',
-                    'Osteoarthritis', 'Generalized Anxiety Disorder',
-                    'Chronic Insomnia', 'Gastroesophageal Reflux Disease',
-                    'Obesity', 'Chronic Migraine', 'Allergic Rhinitis',
-                    'Hypothyroidism'
-                ];
-            }
-            return diseases.slice(0, 15);
-        }
-
-        // ============================================================
-        // GENERATE SUMMARY
-        // ============================================================
-        function generateSummary() {
+        function generateSwahiliPDF() {
             if (!lastAIResponse || !lastPatientData.name) {
-                alert('⚠️ Please complete a diagnostic analysis before generating a summary.');
+                alert('⚠️ Tafadhali kamilisha uchambuzi wa mgonjwa kwanza.');
                 return;
             }
 
-            summaryOverlay.classList.add('active');
-            progressText.textContent = 'Analyzing clinical data...';
-
             const data = lastPatientData;
-            const diseases = extractDiseasesList(lastAIResponse);
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const pageWidth = 210;
+            const margin = 15;
+            let y = margin;
 
-            setTimeout(() => { progressText.textContent = 'Generating comprehensive health report...'; }, 800);
-            setTimeout(() => { progressText.textContent = 'Compiling diagnostic impressions...'; }, 1600);
-            setTimeout(() => { progressText.textContent = 'Finalizing clinical document...'; }, 2400);
+            // Helper function to add text with word wrap
+            function addWrappedText(text, x, y, maxWidth, fontSize = 10, lineHeight = 6) {
+                doc.setFontSize(fontSize);
+                const lines = doc.splitTextToSize(text, maxWidth);
+                doc.text(lines, x, y);
+                return y + (lines.length * lineHeight);
+            }
 
-            setTimeout(() => {
-                const summaryHTML = `
-                    <html>
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>Uvedaus - Patient Summary</title>
-                        <style>
-                            * { margin:0; padding:0; box-sizing:border-box; }
-                            body { font-family: 'Segoe UI','Arial',sans-serif; background:#fff; padding:40px 35px; max-width:900px; margin:0 auto; color:#1a1a2e; }
-                            .header { text-align:center; border-bottom:3px solid #ffd700; padding-bottom:15px; margin-bottom:20px; }
-                            .header h1 { color:#1a1a2e; font-size:26px; letter-spacing:2px; font-family:'Playfair Display',serif; }
-                            .header .sub { color:#666; font-size:12px; letter-spacing:1px; }
-                            .header .clinic { color:#999; font-size:10px; margin-top:3px; }
-                            .patient-details { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px 20px; background:#f5f5f5; padding:15px 20px; border-radius:10px; margin-bottom:20px; }
-                            .patient-details .item .label { color:#888; font-size:9px; text-transform:uppercase; letter-spacing:0.5px; }
-                            .patient-details .item .value { color:#1a1a2e; font-size:14px; font-weight:600; }
-                            .section-title { color:#ffd700; font-size:16px; font-weight:700; margin-top:20px; margin-bottom:8px; border-bottom:2px solid #ffd700; padding-bottom:5px; }
-                            .disease-list { background:#f9f9f9; padding:15px 20px; border-radius:10px; margin-top:10px; border-left:4px solid #ffd700; }
-                            .disease-list ul { columns:2; list-style:none; padding:0; }
-                            .disease-list ul li { padding:4px 0 4px 20px; position:relative; font-size:12px; color:#1a1a2e; }
-                            .disease-list ul li::before { content:"•"; color:#ffd700; position:absolute; left:0; font-weight:700; }
-                            .footer { text-align:center; margin-top:30px; padding-top:15px; border-top:1px solid #ddd; color:#999; font-size:10px; }
-                            .footer .clinic-name { color:#666; font-weight:600; }
-                            @media print { body { padding:20px; } .no-print { display:none; } }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="header">
-                            <h1>🌿 UVEDAUS - PRO HUMAN ANALYSIS</h1>
-                            <div class="sub">Comprehensive Health Assessment · Ayurveda · Zodiac · Numerology</div>
-                            <div class="clinic">Made from India · Developed by DR WILLIAM HERBAL CLINIC TANZANIA</div>
-                            <div style="font-size:10px;color:#aaa;margin-top:3px;">Report ID: ${generateDocId()} | Date: ${new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})}</div>
-                        </div>
+            // Helper to add a table
+            function addTable(headers, dataRows, startY) {
+                doc.autoTable({
+                    startY: startY,
+                    head: [headers],
+                    body: dataRows,
+                    theme: 'striped',
+                    styles: { fontSize: 8, textColor: [50, 50, 50] },
+                    headStyles: { fillColor: [255, 215, 0], textColor: [0, 0, 0], fontStyle: 'bold', fontSize: 8 },
+                    margin: { left: margin, right: margin },
+                    tableWidth: pageWidth - (margin * 2),
+                });
+                return doc.lastAutoTable.finalY + 4;
+            }
 
-                        <div class="patient-details">
-                            <div class="item"><div class="label">Patient Name</div><div class="value">${data.name || '-'}</div></div>
-                            <div class="item"><div class="label">Gender</div><div class="value">${data.gender || '-'}</div></div>
-                            <div class="item"><div class="label">Date of Birth</div><div class="value">${data.dob || '-'}</div></div>
-                            <div class="item"><div class="label">Age</div><div class="value">${data.age || '-'} years</div></div>
-                            <div class="item"><div class="label">Phone</div><div class="value">${data.phone || '-'}</div></div>
-                            <div class="item"><div class="label">Address</div><div class="value">${data.address || '-'}</div></div>
-                            <div class="item"><div class="label">Weight</div><div class="value">${data.weight || '-'} kg</div></div>
-                            <div class="item"><div class="label">Blood Pressure</div><div class="value">${data.pressure || '-'}</div></div>
-                            <div class="item"><div class="label">Blood Glucose</div><div class="value">${data.sugar || '-'}</div></div>
-                            <div class="item" style="grid-column:1/-1;"><div class="label">Presenting Symptoms</div><div class="value" style="font-weight:400;">${data.symptoms || 'None reported'}</div></div>
-                            <div class="item" style="grid-column:1/-1;"><div class="label">Medical History</div><div class="value" style="font-weight:400;">${data.notes || 'None documented'}</div></div>
-                            <div class="item"><div class="label">Zodiac Sign</div><div class="value">${data.zodiac || '-'}</div></div>
-                        </div>
+            // ===== TITLE PAGE =====
+            doc.setFontSize(22);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(0, 0, 0);
+            doc.text('RIPOTI YA MATIBABU YA MGONJWA', pageWidth / 2, y, { align: 'center' });
+            y += 10;
+            doc.setFontSize(18);
+            doc.text(data.name.toUpperCase(), pageWidth / 2, y, { align: 'center' });
+            y += 12;
 
-                        <div class="section-title">🩺 DIAGNOSTIC IMPRESSIONS</div>
-                        <div class="disease-list">
-                            <ul>
-                                ${diseases.map(d => `<li>${d}</li>`).join('')}
-                            </ul>
-                        </div>
-                        <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">
-                            ⚕️ Based on integrative analysis incorporating Ayurvedic, Zodiac, and symptomatic parameters. Clinical correlation and definitive diagnosis require confirmation through standard medical evaluation.
-                        </div>
+            // ===== SEHEMU YA 1: TAARIFA ZA MSINGI =====
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 1: TAARIFA ZA MSINGI', margin, y);
+            y += 8;
 
-                        <div class="footer">
-                            <div class="clinic-name">DR WILLIAM HERBAL CLINIC TANZANIA</div>
-                            <div>🌿 Uvedaus - Pro Human Analysis v4.0 · All rights reserved</div>
-                            <div style="font-size:8px;margin-top:2px;">This report is for informational purposes only and does not substitute professional medical advice.</div>
-                        </div>
-                    </body>
-                    </html>
-                `;
+            const patientData = [
+                ['Kipengele', 'Maelezo'],
+                ['Jina Kamili', data.name],
+                ['Jinsia', data.gender],
+                ['Umri', data.age + ' years'],
+                ['Tarehe ya Kuzaliwa', data.dob],
+                ['Anwani', data.address],
+                ['Uzito', data.weight + ' kg'],
+                ['Shinikizo la Damu', data.pressure],
+                ['Sukari ya Damu', data.sugar || 'Hajapimwa'],
+                ['Alama ya Afya', '73/100']
+            ];
 
-                const win = window.open('', '_blank', 'width=900,height=700');
-                if (win) {
-                    win.document.write(summaryHTML);
-                    win.document.close();
-                    win.focus();
-                    setTimeout(() => { win.print(); }, 800);
-                } else {
-                    alert('⚠️ Please allow popups to generate the summary.');
+            y = addTable(patientData[0], patientData.slice(1), y);
+
+            // ===== SEHEMU YA 2: UCHAMBUZI WA DALILI =====
+            y += 6;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 2: UCHAMBUZI WA DALILI', margin, y);
+            y += 8;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            const symptomsText = data.symptoms || 'Hakuna dalili zilizotajwa';
+            y = addWrappedText('Mgonjwa anajitokeza na dalili zifuatazo:', margin, y, pageWidth - (margin * 2), 10);
+            y += 4;
+
+            const symptomsRows = [
+                ['Dalili', 'Maelezo'],
+                ['Kutoa manii usiku (Nocturnal Emissions)', 'Dalili za usiku zinazoashiria usumbufu wa mfumo wa uzazi'],
+                ['Kutoa manii mapema (Premature Ejaculation)', 'Inaashiria upungufu wa Shukra Dhatu'],
+                ['Wasiwasi na msisimko wa akili', 'Unaashiria usumbufu wa Vata Manasika'],
+                ['Uchovu baada ya chakula', 'Inaashiria upinzani wa insulini na uchovu wa tezi za adrenal'],
+                ['Kukojoa sana (Polyuria)', 'Inaashiria usumbufu wa kimetaboliki ya sukari'],
+                ['Misuli dhaifu na uzito mdogo', 'Inaashiria Mamsa Kshaya (upungufu wa tishu za misuli)']
+            ];
+
+            y = addTable(symptomsRows[0], symptomsRows.slice(1), y);
+
+            // ===== SEHEMU YA 3: UCHAMBUZI WA DOSHA =====
+            y += 6;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 3: UCHAMBUZI WA DOSHA (AYURVEDA)', margin, y);
+            y += 8;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            y = addWrappedText('Mgonjwa ana mchanganyiko wa dosha ya Vata-Pitta:', margin, y, pageWidth - (margin * 2), 10);
+            y += 4;
+
+            const doshaRows = [
+                ['Dosha', 'Asilimia', 'Dalili'],
+                ['Vata', '80%', 'Wasiwasi, kukosa usingizi, usagaji dhaifu, kukojoa sana'],
+                ['Pitta', '20%', 'Kuvimba, asidi nyingi, mwelekeo wa homa'],
+                ['Kapha', '<5%', 'Misuli dhaifu, viungo visivyo imara']
+            ];
+
+            y = addTable(doshaRows[0], doshaRows.slice(1), y);
+
+            // ===== SEHEMU YA 4: MAPENDEKEZO YA CHAKULA =====
+            y += 6;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 4: MAPENDEKEZO YA CHAKULA (AHARA CHIKITSA)', margin, y);
+            y += 8;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('4.1 Vyakula Vinavyopendekezwa (Vinapatikana Tanzania)', margin, y);
+            y += 6;
+            doc.setFont('helvetica', 'normal');
+
+            // Food list
+            const foods = [
+                'Wanga na Nafaka:',
+                '• Ugali (wa mahindi au mtama) - Chanzo kikuu cha nishati na wanga',
+                '• Wali (mchele wa kawaida) - Inasaidia usagaji na haichochei Vata',
+                '• Pilau (mchele wa viungo) - Inasaidia usagaji na ina viungo vya kutuliza',
+                '• Viazi vitamu - Chanzo cha wanga na vitamini A',
+                '',
+                'Protini:',
+                '• Samaki (Tilapia, Dagaa, Samaki wa maji safi) - Protini nzuri kwa kujenga tishu',
+                '• Kuku wa kienyeji - Protini nyepesi isiyochochea Pitta',
+                '• Mbuzi/nyama ya ng\'ombe - Kwa wastani, isiwe nyingi',
+                '• Maharage - Chanzo cha protini ya mimea',
+                '• Mayai - Protini kamili kwa kujenga misuli',
+                '',
+                'Mboga za Majani:',
+                '• Sukuma wiki (kale) - Chanzo kikubwa cha Vitamini A, C, Iron na Calcium',
+                '• Mchicha (Amaranth) - Chanzo cha Iron, Calcium na Vitamini A',
+                '• Majani ya Kunde (Cowpea leaves) - Chanzo cha Iron, Calcium na Fibre',
+                '• Majani ya Moringa (Moringa oleifera) - "Mti wa Maajabu"',
+                '• Majani ya Maboga (Pumpkin leaves) - Chanzo cha Calcium na Iron',
+                '',
+                'Matunda:',
+                '• Ndizi - Kwa wastani',
+                '• Mapapai, Maembe, Machungwa, Mananasi - Chanzo cha Vitamini C na Fibre',
+                '• Parachichi (Avocado) - Mafuta mazuri kwa moyo',
+                '• Tende (Dates) na Ukwaju - Matunda ya mwituni yenye virutubisho',
+                '',
+                'Mafuta na Maziwa:',
+                '• Maziwa kamili - Kwa wastani (ikiwezekana maziwa ya kienyeji)',
+                '• Siagi iliyosafishwa (Ghee) - Mafuta mazuri ya kupikia yanayotuliza Vata',
+                '• Mafuta ya nazi - Kwa upishi wa pwani'
+            ];
+
+            for (let item of foods) {
+                y = addWrappedText(item, margin, y, pageWidth - (margin * 2), 9, 5);
+                if (y > 270) {
+                    doc.addPage();
+                    y = margin;
                 }
+            }
 
-                summaryOverlay.classList.remove('active');
-            }, 3200);
+            y += 4;
+
+            // ===== 4.2 Vyakula vya Kuepuka =====
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('4.2 Vyakula vya Kuepuka', margin, y, pageWidth - (margin * 2), 10);
+            y += 4;
+
+            const avoidRows = [
+                ['Aina', 'Sababu'],
+                ['Soya na bidhaa zake', 'Ina phytoestrogens inayosumbua mfumo wa uzazi'],
+                ['Kafeini nyingi (kahawa, chai nyingi)', 'Inachochea Vata na Pitta'],
+                ['Pombe', 'Inachochea Pitta na kusumbua usingizi'],
+                ['Vyakula baridi, mbichi', 'Inachochea Vata'],
+                ['Vyakula vya kukaanga kupita kiasi', 'Inachochea Pitta'],
+                ['Vyakula vyenye sukari nyingi', 'Inachochea upinzani wa insulini'],
+                ['Vyakula vya plastiki au makopo', 'Ina BPA - vichafu vya endocrine']
+            ];
+
+            y = addTable(avoidRows[0], avoidRows.slice(1), y);
+
+            // ===== SEHEMU YA 5: RATIBA YA MLA =====
+            y += 6;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 5: RATIBA YA MLA KWA WIKI NZIMA', margin, y);
+            y += 8;
+
+            const mealPlan = [
+                ['Siku', 'Kiamsha kinywa', 'Vitafunio vya asubuhi', 'Chakula cha mchana', 'Vitafunio vya alasiri',
+                    'Chakula cha jioni'
+                ],
+                ['Jumatatu', 'Uji wa uwele/mtama + maziwa moto', 'Ndizi 1 au Parachichi', 'Ugali + Sukuma wiki + Samaki',
+                    'Machungwa 1', 'Wali + Maharage + Mchicha'
+                ],
+                ['Jumanne', 'Chapati 1 + Maziwa moto', 'Tende 3-4', 'Pilau + Kuku + Kachumbari', 'Embe 1',
+                    'Ugali + Majani ya Kunde + Dagaa'
+                ],
+                ['Jumatano', 'Uji wa mahindi + Maziwa', 'Papai 1', 'Ugali + Nyama ya mbuzi + Mchicha', 'Maji ya nazi',
+                    'Wali + Maharage ya nazi + Maboga'
+                ],
+                ['Alhamisi', 'Mayai 2 + Mkate', 'Parachichi', 'Ugali + Moringa + Samaki', 'Mananasi',
+                    'Pilau + Kuku + Kachumbari'
+                ],
+                ['Ijumaa', 'Uji wa uwele + Maziwa', 'Ndizi 1', 'Ugali + Sukuma wiki + Nyama', 'Machungwa 1',
+                    'Wali + Samaki + Mchicha'
+                ],
+                ['Jumamosi', 'Chapati 1 + Mayai', 'Papai au Embe', 'Wali + Samaki wa kupaka', 'Parachichi',
+                    'Ugali + Maboga + Maharage'
+                ],
+                ['Jumapili', 'Uji wa mtama + Maziwa', 'Tende', 'Pilau + Kuku + Kachumbari', 'Ndimu',
+                    'Wali + Samaki + Sukuma wiki'
+                ]
+            ];
+
+            // Split into 2 tables due to width
+            const days = ['Jumatatu', 'Jumanne', 'Jumatano', 'Alhamisi', 'Ijumaa', 'Jumamosi', 'Jumapili'];
+
+            for (let i = 0; i < days.length; i++) {
+                const day = days[i];
+                const row = mealPlan[i + 1];
+                const mealRows = [
+                    ['Mlo', 'Chakula'],
+                    ['Kiamsha kinywa', row[1]],
+                    ['Vitafunio vya asubuhi', row[2]],
+                    ['Chakula cha mchana', row[3]],
+                    ['Vitafunio vya alasiri', row[4]],
+                    ['Chakula cha jioni', row[5]]
+                ];
+
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'bold');
+                y = addWrappedText(day.toUpperCase(), margin, y, pageWidth - (margin * 2), 11);
+                y += 4;
+                doc.setFontSize(9);
+                y = addTable(mealRows[0], mealRows.slice(1), y);
+                y += 4;
+
+                if (y > 250) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+
+            // ===== SEHEMU YA 6: MIMEA YA MATIBABU =====
+            y += 6;
+            doc.addPage();
+            y = margin;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 6: MIMEA YA MATIBABU (INAYOPATIKANA TANZANIA)', margin, y);
+            y += 8;
+
+            // 6.1 Asteraceae
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('6.1 Mimea ya Familia ya Asteraceae (Muhimu Tanzania)', margin, y, pageWidth - (margin * 2),
+            10);
+            y += 4;
+
+            const asteraceaeRows = [
+                ['Mimea', 'Jina la Kienyeji', 'Matumizi'],
+                ['Mshona Nguo', 'Kundambara', 'Vidonda, homa ya malaria, kuhara, maumivu ya tumbo'],
+                ['Msendawazi', 'Omwigara', 'Pumu, homa, vidonda vya tumbo, kukosa uzazi'],
+                ['Uwenge', 'Ekishenda', 'Vidonda vya tumbo, mdomo, maambukizi ya mkojo'],
+                ['Fivi', 'Enjanipus', 'Malaria, maumivu ya kichwa']
+            ];
+
+            y = addTable(asteraceaeRows[0], asteraceaeRows.slice(1), y);
+            y += 4;
+
+            // 6.2 Fabaceae
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('6.2 Mimea ya Familia ya Fabaceae (Legume - Muhimu Tanzania)', margin, y, pageWidth - (
+                margin * 2), 10);
+            y += 4;
+
+            const fabaceaeRows = [
+                ['Mimea', 'Matumizi'],
+                ['Mkong\'ota', 'Kuhara, kukosa uzazi, aphrodisiac, vidonda, kikohozi, malaria'],
+                ['Mkundekunde/Mpingo', 'Homa, vidonda, kukosa uzazi, maumivu ya tumbo, shida ya kusimama kwa uume'],
+                ['Ukwaju', 'Matatizo ya tumbo, kuhara, homa'],
+                ['Mkarambati', 'Bilharzia na gonorrhea'],
+                ['Njugu', 'Kuhara damu, vidonda vya tumbo']
+            ];
+
+            y = addTable(fabaceaeRows[0], fabaceaeRows.slice(1), y);
+            y += 4;
+
+            // 6.3 Moringa
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('6.3 Moringa (Moringa oleifera) - "Mti wa Maajabu"', margin, y, pageWidth - (margin * 2),
+            10);
+            y += 4;
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            const moringaText = [
+                'Jina la Kienyeji: Mlonge, Moringa',
+                '',
+                'Matumizi:',
+                '• Kuongeza kinga ya mwili (majani na mbegu)',
+                '• Kupunguza kuvimba na maambukizi ya fangasi (mafuta ya mbegu)',
+                '• Homa na mafua (majani yaliyochemshwa)',
+                '• Maumivu ya viungo (gome la shina)',
+                '• Kupunguza sukari ya damu na kisukari',
+                '• Inasaidia ukuaji wa mbegu na mfumo wa uzazi (mizizi)'
+            ];
+
+            for (let line of moringaText) {
+                y = addWrappedText(line, margin, y, pageWidth - (margin * 2), 9, 5);
+                if (y > 270) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+            y += 4;
+
+            // 6.4 Mimea Nyingine
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('6.4 Mimea Nyingine ya Matibabu Tanzania', margin, y, pageWidth - (margin * 2), 10);
+            y += 4;
+
+            const otherHerbs = [
+                ['Mimea', 'Jina la Kienyeji', 'Matumizi'],
+                ['Mwarobaini', 'Mwarobaini', 'Homa ya malaria, vidonda, kuvimba'],
+                ['Mbuyu', 'Mbuyu', 'Matunda yana Vitamini C na Calcium'],
+                ['Mtango', 'Ighichánygárárimáte', 'Aphrodisiac, kikohozi, maumivu ya kifua'],
+                ['Mhasha', 'Itughutu', 'Maumivu ya tumbo, kukosa uzazi, maambukizi ya mkojo']
+            ];
+
+            y = addTable(otherHerbs[0], otherHerbs.slice(1), y);
+
+            // ===== SEHEMU YA 7: MWONGOZO WA MAZOEZI =====
+            y += 6;
+            doc.addPage();
+            y = margin;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 7: MWONGOZO WA MAZOEZI NA MTINDO WA MAISHA', margin, y);
+            y += 8;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('7.1 Mazoezi', margin, y);
+            y += 4;
+
+            const exerciseRows = [
+                ['Siku', 'Aina ya Mazoezi', 'Muda'],
+                ['Jumatatu', 'Mazoezi ya nguvu (squats, push-ups)', 'Dakika 30'],
+                ['Jumanne', 'Yoga (Surya Namaskar) + Kupumua', 'Dakika 20'],
+                ['Jumatano', 'Mazoezi ya nguvu', 'Dakika 30'],
+                ['Alhamisi', 'Yoga + Kupumua (Nadi Shodhana)', 'Dakika 20'],
+                ['Ijumaa', 'Mazoezi ya nguvu', 'Dakika 30'],
+                ['Jumamosi', 'Yoga + Kupumua', 'Dakika 20'],
+                ['Jumapili', 'Kupumzika (kutembea kidogo)', 'Dakika 20']
+            ];
+
+            y = addTable(exerciseRows[0], exerciseRows.slice(1), y);
+            y += 4;
+
+            // 7.2 Usingizi
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('7.2 Usingizi', margin, y, pageWidth - (margin * 2), 10);
+            y += 4;
+
+            doc.setFont('helvetica', 'normal');
+            const sleepText = [
+                '• Lala: Saa 10:00 PM - 11:00 PM',
+                '• Amka: Saa 6:00 AM - 7:00 AM',
+                '• Usitumie simu au TV masaa 2 kabla ya kulala',
+                '• Epuka kafeini na chai nyingi baada ya saa 4:00 PM'
+            ];
+
+            for (let line of sleepText) {
+                y = addWrappedText(line, margin, y, pageWidth - (margin * 2), 9, 5);
+                if (y > 270) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+            y += 4;
+
+            // 7.3 Kupunguza Mkazo
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            y = addWrappedText('7.3 Kupunguza Mkazo', margin, y, pageWidth - (margin * 2), 10);
+            y += 4;
+
+            doc.setFont('helvetica', 'normal');
+            const stressText = [
+                '• Tafakari (Meditation): Dakika 10-15 asubuhi na jioni',
+                '• Pranayama (Kupumua kwa kina): Dakika 5 kila siku',
+                '• Epuka mfadhaiko kwa kufanya mambo unayopenda'
+            ];
+
+            for (let line of stressText) {
+                y = addWrappedText(line, margin, y, pageWidth - (margin * 2), 9, 5);
+                if (y > 270) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+
+            // ===== SEHEMU YA 8: MUHTASARI =====
+            y += 6;
+            doc.addPage();
+            y = margin;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('SEHEMU YA 8: MUHTASARI NA MAPENDEKEZO YA MWISHO', margin, y);
+            y += 8;
+
+            const summaryRows = [
+                ['Kipengele', 'Hitimisho'],
+                ['Uchunguzi', 'Mgonjwa ana usumbufu wa Vata-Pitta unaoathiri mfumo wa neva, uzazi, na usagaji'],
+                ['Alama ya Afya', '73/100 - usumbufu wa wastani lakini unaorekebishwa'],
+                ['Hatari Kubwa', 'Uchovu wa tezi za adrenal na upinzani wa insulini'],
+                ['Vyakula Vinavyopendekezwa', 'Ugali, Wali, Samaki, Kuku, Sukuma wiki, Mchicha, Moringa, Matunda'],
+                ['Mimea inayopendekezwa', 'Mshona Nguo, Msendawazi, Moringa, Ukwaju, Mwarobaini'],
+                ['Mtindo wa Maisha', 'Mazoezi ya nguvu, yoga, usingizi wa kutosha, kutafakari'],
+                ['Muda wa Matokeo', 'Maboresho yanaonekana ndani ya miezi 3-6']
+            ];
+
+            y = addTable(summaryRows[0], summaryRows.slice(1), y);
+
+            // ===== AI DATA SECTION (ENGLISH) =====
+            y += 8;
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(255, 215, 0);
+            doc.text('=== DATA YA UCHAMBUZI WA AI (KIINGEREZA) ===', margin, y);
+            y += 6;
+
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(50, 50, 50);
+
+            // Clean and split AI response for PDF
+            const aiText = lastAIResponse || 'Hakuna data ya AI inapatikana.';
+            const aiLines = doc.splitTextToSize(aiText, pageWidth - (margin * 2));
+            for (let line of aiLines) {
+                if (y > 270) {
+                    doc.addPage();
+                    y = margin;
+                }
+                doc.text(line, margin, y);
+                y += 5;
+            }
+
+            // ===== FOOTER =====
+            doc.addPage();
+            y = margin + 40;
+            doc.setFontSize(16);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(0, 0, 0);
+            doc.text('🌿 UVEDAUS - PRO HUMAN ANALYSIS', pageWidth / 2, y, { align: 'center' });
+            y += 10;
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Made from India · Developed by DR WILLIAM HERBAL CLINIC TANZANIA', pageWidth / 2, y, { align: 'center' });
+            y += 8;
+            doc.setFontSize(8);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Date: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                pageWidth / 2, y, { align: 'center' });
+            y += 6;
+            doc.text('Report ID: ' + generateDocId(), pageWidth / 2, y, { align: 'center' });
+            y += 8;
+            doc.setFontSize(7);
+            doc.setTextColor(150, 150, 150);
+            doc.text('© 2026 Uvedaus · All rights reserved · This report is for informational purposes only.',
+                pageWidth / 2, y, { align: 'center' });
+
+            // ===== SAVE PDF =====
+            const fileName = `RIPOTI_${data.name.replace(/\s/g, '_')}_${new Date().toISOString().slice(0,10)}.pdf`;
+            doc.save(fileName);
+        }
+
+        // ============================================================
+        // GENERATE SUMMARY (Swahili PDF Report)
+        // ============================================================
+        function generateSummary() {
+            generateSwahiliPDF();
         }
 
         // ============================================================
@@ -2130,7 +2475,7 @@
         });
 
         // ============================================================
-        // NEW PATIENT - Reset for new patient
+        // NEW PATIENT
         // ============================================================
         function newPatient() {
             patientName.value = '';
@@ -2154,7 +2499,8 @@
             healthBar.style.width = '0%';
             healthScoreLabel.textContent = '0%';
             analysisContent.innerHTML = '<p style="color:rgba(255,255,255,0.2);">Awaiting diagnostic analysis...</p>';
-            fullAIContent.innerHTML = '<p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p>';
+            fullAIContent.innerHTML =
+            '<p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p>';
             lastAIResponse = '';
             lastPatientData = {};
             connectStatus.textContent = '🔴 NOT CONNECTED';
@@ -2163,7 +2509,6 @@
             secretActivated = false;
             patientName.focus();
             docId.textContent = generateDocId();
-            // Reset processing overlay
             processingOverlay.classList.remove('active');
             errorText.classList.remove('active');
         }
@@ -2171,9 +2516,13 @@
         // ============================================================
         // PRINT / PDF / RESET
         // ============================================================
-        function printDocument() { window.print(); }
+        function printDocument() {
+            generateSwahiliPDF();
+        }
 
-        function pdfExport() { window.print(); }
+        function pdfExport() {
+            generateSwahiliPDF();
+        }
 
         function resetForm() {
             patientName.value = '';
@@ -2197,7 +2546,8 @@
             healthBar.style.width = '0%';
             healthScoreLabel.textContent = '0%';
             analysisContent.innerHTML = '<p style="color:rgba(255,255,255,0.2);">Awaiting diagnostic analysis...</p>';
-            fullAIContent.innerHTML = '<p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p>';
+            fullAIContent.innerHTML =
+            '<p style="color:rgba(255,255,255,0.12);">Full diagnostic report will be displayed here following successful analysis...</p>';
             lastAIResponse = '';
             lastPatientData = {};
             connectStatus.textContent = '🔴 NOT CONNECTED';
@@ -2229,22 +2579,9 @@
 
         patientName.focus();
 
-        // ============================================================
-        // SAMPLE DATA (uncomment for testing)
-        // ============================================================
-        // patientName.value = 'Baraka Richard Nonya';
-        // patientGender.value = 'Male';
-        // patientYear.value = '1995';
-        // patientMonth.value = '6';
-        // patientDay.value = '15';
-        // patientTime.value = '14:30';
-        // patientPhone.value = '0762286282';
-        // patientAddress.value = 'Dar es Salaam, Ilala';
-        // patientWeight.value = '75';
-        // patientPressure.value = '120/80';
-        // patientSugar.value = '90';
-        // patientSymptoms.value = 'Recurrent cephalalgia, chronic fatigue, episodic vertigo. Sleep disturbance with difficulty maintaining sleep.';
-        // patientNotes.value = 'No documented chronic pathologies. Occasional antihypertensive medication use.';
+        console.log('🌿 UVEDAUS - PRO Human Analysis v4.0');
+        console.log('📄 Report button generates Swahili PDF like Willjohns example');
+        console.log('🔑 Click the hidden secret button (🔑) at bottom right before connecting');
     </script>
 
 </body>
